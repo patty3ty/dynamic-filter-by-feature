@@ -1,0 +1,36 @@
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .product{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+  
+  img{
+    width: 350px;
+    object-fit: contain;
+  }
+  
+  .name{
+    font-weight: 300;
+  }
+
+  h1{
+    font-size: 25px;
+    color: black;
+    font-weight: 300;
+    text-align: center; /* Added line to center text */
+  }
+
+  p {
+    font-size: 20px;
+    color: black;
+    font-weight: 300;
+    margin-left: 675px;
+  }

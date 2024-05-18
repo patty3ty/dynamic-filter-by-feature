@@ -1,0 +1,188 @@
+<!DOCTYPE
+    html>
+<html
+    lang="en">
+
+<head>
+    <meta
+        charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>
+        Multi-Step
+        Form
+        -
+        Result
+    </title>
+    <link
+        rel="stylesheet"
+        href="style_extend.css">
+</head>
+
+<body>
+
+    <!-- Top Bar Picture -->
+    <div
+        class="top-bar">
+        <img src="../picture/top_bar.png"
+            alt="Top Bar Picture"
+            style="max-width: 100%;">
+    </div>
+
+    <!-- Main Content Layout -->
+    <div
+        class="main-content">
+        <!-- Left Side Picture -->
+        <div
+            class="left-side">
+        </div>
+
+
+        <!-- Right Side Form -->
+
+        <div
+            class="right-side">
+            <div
+                class="center-text">
+                <h2>年輕小白入門款保障內容
+                </h2>
+                <h3>以意外險搭配醫療實支，及一次性給付重大傷病保險金，可再根據自身狀況(如家族病史)規劃其他險種。
+                </h3>
+            </div>
+
+            <div class="information"
+                id="information">
+
+            </div>
+
+            <div
+                class="center-text">
+                <h2>其他保險規劃
+                </h2>
+            </div>
+            <!-- Based on the condition below to add card -->
+            <div class="card-container"
+                id="card-container">
+            </div>
+        </div>
+
+        <script>
+            //function to add insurance coverage
+            function addCategory(title, description, insuranceAmount, Fee) {
+                // Create elements
+                var informationContainer = document.getElementById('information');
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                const descriptionDiv = document.createElement('div');
+                descriptionDiv.className = 'description';
+
+                const h2 = document.createElement('h2');
+                h2.textContent = title;
+
+                const pDesc = document.createElement('p');
+                pDesc.textContent = description;
+
+                const footerDiv = document.createElement('div');
+                footerDiv.className = 'footer';
+
+                const pStats = document.createElement('p');
+                pStats.className = 'statistics';
+                pStats.textContent = insuranceAmount;
+
+                const divTag = document.createElement('div');
+                divTag.className = 'tag';
+                divTag.textContent = Fee;
+
+                // Construct the card
+                descriptionDiv.appendChild(h2);
+                descriptionDiv.appendChild(pDesc);
+
+                footerDiv.appendChild(pStats);
+                footerDiv.appendChild(divTag);
+
+                categoryDiv.appendChild(descriptionDiv);
+                categoryDiv.appendChild(footerDiv);
+
+                informationContainer.appendChild(categoryDiv);
+            }
+
+            function addCard(titleText, descriptionText, valueText, detailText, buttonText, path) {
+                var cardContainer = document.getElementById('card-container');
+                var card = document.createElement('div');
+                card.className = 'card';
+
+                // Create and append the title div
+                var title = document.createElement('div');
+                title.className = 'card-title';
+                title.textContent = titleText;
+                card.appendChild(title);
+
+                // Create and append the description div
+                var description = document.createElement('div');
+                description.className = 'card-description';
+                description.textContent = descriptionText;
+                card.appendChild(description);
+
+                // Create and append the value div
+                var value = document.createElement('div');
+                value.className = 'card-value';
+                value.innerHTML = valueText; // We use innerHTML to parse the <span> element
+                card.appendChild(value);
+
+                // Create and append the detail div
+                var detail = document.createElement('div');
+                detail.className = 'card-detail';
+                detail.textContent = detailText;
+                card.appendChild(detail);
+
+                // Create and append the button
+                var button = document.createElement('button');
+                button.className = 'card-button';
+                button.textContent = buttonText;
+                button.onclick = function () {
+                    window.location.href = path; // Specify the path to your HTML file
+                };
+                card.appendChild(button);
+
+                // Finally, append the card div to the container
+                cardContainer.appendChild(card);
+
+            }
+
+            // Function to update the left margin based on the number of category
+            function updateCategoryLeftMargin() {
+                const category = document.querySelectorAll('.information .category');
+                const categoryCount = category.length;
+
+                // Apply specific margins based on the count
+                switch (categoryCount) {
+                    case 1:
+                        category[0].style.marginLeft = '180px';
+                        break;
+                    case 2:
+                        category[0].style.marginLeft = '330px';
+                        break;
+                    case 3:
+                        // If there are three category, apply specific margin to the first card
+                        category[0].style.marginLeft = '180px';
+                        break;
+                    // Add more cases as necessary for different numbers of category
+                }
+            }
+
+            addCategory('手術險', '住院手術給付10倍保險金額；門診手術給付2倍保險金額，同一保單年度門診手術給付以10次為限。', '保額/日額 500元', '年繳 485元');
+            addCategory('意外險', '意外身故給付1倍所選保額；意外失能依1~11級失能等級計算，最高1倍保額。', '保額/日額 200萬', '年繳 2,760元');
+            addCategory('實支實付', '每次住院醫療費用最高10萬元+每日住院經常費用最高1,000元、門診手術費用最高：1.5萬元(自負額1,000元)、特定處置費用最高：1.5萬元(自負額1,000元)、重大住院慰問保險金：6,000元', '保額/日額 M10計畫', '年繳 2,440元');
+            addCategory('重大傷病', '投保第一年，給付10%所選保額；第二年起，給付100%保額；一次性給付。', '保額/日額 100萬', '年繳 320元');
+            addCard('通勤必備款', '年繳保費', '10,449 <span class="currency">元/新臺幣</span>', '平均月繳 870 元', '查看方案詳情', '通勤必備款保障內容.html');
+            addCard('加薪計畫', '年繳保費', '72,000 <span class="currency">元/新臺幣</span>', '平均月繳 6000 元', '查看方案詳情', '加薪計畫保障內容.html');
+
+            // Run the function to update margins
+            updateCategoryLeftMargin();
+        </script>
+
+</body>
+
+</html>
